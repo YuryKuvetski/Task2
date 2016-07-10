@@ -7,9 +7,8 @@
    <title>{% block title %}Task 2 y.kuvetski{% endblock %}</title>
 
    <!-- Bootstrap -->
-   <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-   <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
-   <link href="/static/css/fbposter.css" rel="stylesheet">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,10 +18,53 @@
    <![endif]-->
  </head>
  <body>
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Task2</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="">Home</a></li>
+      <li><a href="/admin/">Administrate Users</a></li>
+    </ul>
+    {% if user and not user.is_anonymous %}
+      <ul class="nav navbar-nav navbar-right">
+        <li style="padding:15px; color: #777;">
+          {{ user.get_full_name|default:user.username }}
+        </li> 
+        <li>
+          <a href="{% url 'auth:logout' %}?next={{ request.path }}">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Logout
+          </a>
+        </li> 
+      </ul>
+    {% else %}
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" style="padding:5px">
+          <img src="http://dataskeptic.com/facebook.png"  alt="Login with Facebook" height="41px" style="padding:0px">
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" style="padding:5px">
+          <img src="http://cwer.ws/media/files/u1289493/pic0.png"  alt="Login with Google" height="41px" style="padding:0px">
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" style="padding:5px">
+          <img src="http://kellerrostov.ru/image/twitter.png"  alt="Login with Twitter" height="41px" style="padding:0px">
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'social:begin' 'vk-oauth2' %}?next={{ request.path }}" style="padding:5px">
+            <img src="https://addons.opera.com/media/extensions/93/5493/1.4.1-rev1/icons/icon_64x64.png"  alt="Login with VK" height="41px" style="padding:0px">
+          </a>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>
    {% block main %}{% endblock %}
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <!-- Include all compiled plugins (below), or include individual files as needed -->
-   <script src="/static/js/bootstrap.min.js"></script>
  </body>
 </html>
