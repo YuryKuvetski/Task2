@@ -79,13 +79,14 @@ AUTHENTICATION_BACKENDS = (
    'social.backends.facebook.FacebookOAuth2',
    'social.backends.google.GoogleOAuth2',
    'social.backends.twitter.TwitterOAuth',
+   'social.backends.vk.VKOAuth2',
    'django.contrib.auth.backends.ModelBackend',
 )
 
 LOGIN_REDIRECT_URL = '/'
 
-VK_APP_ID = '3049876'
-VK_API_SECRET = 'KcviIeKLsapVIsd9Kvjasn'
+SOCIAL_AUTH_VK_OAUTH2_KEY = '5540988'
+SOCIAL_AUTH_VK_OAUTH2_SECRET  = '6pkMBePuxjl25nB88SoJ'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1654727594854319'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ab0c3f5f62d65d0a37ae1404f1673987'

@@ -23,7 +23,10 @@
      <li>
        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
      </li>
-   {% endif %}
+     <li>
+       <a href="{% url 'social:begin' 'vk' %}?next={{ request.path }}">Login with VK</a>
+     </li>
+     {% endif %}
    </ul>
  </p>
  </div>
