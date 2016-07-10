@@ -6,5 +6,22 @@
     <h1>My Task2 for You</h1> 
     <p>Of course I could do everything by hand but did not.</p> 
   </div>
+
+  {% if user and not user.is_anonymous %}
+	{% if user.is_staff %}
+  		You can access the admin site!
+  	{% endif %}
+
+	{% if user.is_superuser %}
+  		You can do everything you want!
+	{% else %}
+  		{% if user.is_staff %}
+  			You can access the admin site!
+		{% else %}
+			You are just a user, without any rights!
+		{% endif %}
+  	{% endif %}
+  {% endif %}
+
 </div>
 {% endblock %}
